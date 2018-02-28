@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/pages/all/mainTemplate.xhtml"
+                template="/mainTemplate.xhtml">
+
+    <ui:define name="title">
+        Ajouter un nouvel article
+    </ui:define>
+
+    <ui:define name="content">
+        <h2 class="display-4"><span class="oi oi-tag"></span>&nbsp;Nouvel article</h2>
+        <hr/>
+        <h:form>
+            <div class="form-group row">
+                <label for="reference" class="col-sm-2 col-form-label">Réference</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{articleMB.article.reference}" class="form-control" id="reference" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="designation" class="col-sm-2 col-form-label">Designation</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{articleMB.article.designation}" class="form-control" id="designation" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="quantite" class="col-sm-2 col-form-label">Quantité</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{articleMB.article.qteStock}" class="form-control" id="quantite" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="prix" class="col-sm-2 col-form-label">Prix</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{articleMB.article.prix}" class="form-control" id="prix" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="caracteristiques" class="col-sm-2 col-form-label">Caractéristiques</label>
+                <div class="col-sm-10">
+                    <h:inputTextarea value="#{articleMB.article.caracteristiques}" class="form-control" id="caracteristiques" />
+                </div>
+            </div>
+            <h:commandButton class="btn btn-primary" value="Enregister l'article"
+                             action="#{articleMB.save}">
+            </h:commandButton>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

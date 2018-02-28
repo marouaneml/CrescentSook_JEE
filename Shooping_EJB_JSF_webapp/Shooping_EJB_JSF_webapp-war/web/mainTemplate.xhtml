@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://java.sun.com/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f = "http://java.sun.com/jsf/core" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
+        <title><ui:insert name="title"></ui:insert></title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <br/>
+            <div class="row">
+                <div class="col-md">
+                    <ui:insert name="top">
+                        <div class="logo">
+                            <h:graphicImage name="img/logo.png" alt="logo" />
+                            <span>Crescent Sook</span>
+                        </div>
+                        <ul class="topmenu nav justify-content-center">
+                            <li class="nav-item">
+                                <h:link class="nav-link" outcome="/pages/all/index.xhtml">Accueil</h:link>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link" outcome="/pages/all/listeArticles.xhtml">Liste des articles</h:link>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link" outcome="/pages/all/moi.xhtml">A propos</h:link>
+                            </li>
+                            <li class="nav-item">
+                                <h:link rendered="#{empty request.remoteUser}" class="nav-link" outcome="/pages/all/inscription.xhtml">S'inscrir</h:link>
+                            </li>
+                            <li class="nav-item">
+                                <h:link rendered="#{empty request.remoteUser}" class="nav-link" outcome="/pages/all/seConnecter.xhtml">Se connecter</h:link>
+                            </li>
+                            <li class="nav-item">
+                                <h:form rendered="#{not empty request.remoteUser}">
+                                    <h:commandLink value="Sortir" action="#{loginMB.logout()}" />
+                                </h:form>
+                            </li>
+                        </ul>
+                        <br/>
+                        <h:form>
+                            <div class="search">
+                                <div class="input-group mb-3">
+                                    <h:inputText class="form-control form-control-lg" binding="#{str}" a:placeholder="Chercher un article .." />
+                                    <h:selectOneMenu value = "#{chercherArticleMB.category}" class="custom-select custom-select-lg" >
+                                        <f:selectItem itemValue ="all" itemLabel ="Toute catégorie"/>
+                                        <f:selectItem itemValue = "A" itemLabel ="Accessoires" />
+                                        <f:selectItem itemValue ="B" itemLabel ="Jeux" />
+                                        <f:selectItem itemValue = "C" itemLabel ="Electroménagers"/>
+                                        <f:selectItem itemValue = "D" itemLabel ="Vetements"/>
+                                        <f:selectItem itemValue ="E" itemLabel ="Cosmétique"/>
+                                        <f:selectItem itemValue = "F" itemLabel ="Voitures"/>
+                                    </h:selectOneMenu>
+                                    <div class="input-group-append">
+                                        <h:commandLink action="#{chercherArticleMB.chercherArticle(str.value, chercherArticleMB.category)}">
+                                            <button class="btn btn-outline-secondary" type="button"><span class="oi oi-magnifying-glass"></span></button>
+                                        </h:commandLink>
+                                    </div>
+                                </div>
+                            </div>   
+                        </h:form>
+
+                        <hr/>
+                    </ui:insert>
+                </div>
+            </div> 
+            <br/>
+            <div class="row ml-content">
+                <c:if test="#{not empty request.remoteUser}">
+                    <div  class="col-md-4">
+                        <div class="user-profile ">
+                            <h:graphicImage name="uploads/profils/#{loginMB.authenticatedUser.photoProfil}" alt="#{loginMB.authenticatedUser.prenom}" class="rounded-circle" />
+                            <h:graphicImage rendered="#{loginMB.authenticatedUser.photoProfil}" name="img/default-user.png" alt="default-user.png" class="rounded-circle"/>
+                            <span class="display-4">#{loginMB.authenticatedUser.prenom}</span>
+                            <div class="list-group">
+                                <h:link outcome="/pages/user/panier.xhtml" class="list-group-item list-group-item-action">Mon panier</h:link>
+                                <h:link outcome="/pages/user/achats.xhtml" class="list-group-item list-group-item-action">Mes achats</h:link>
+                                <h:form>
+
+                                    <h:commandLink action="#{compteMB.afficherCompte()}" class="list-group-item list-group-item-action" value="Mon compte" />
+                                </h:form>
+                            </div>
+                        </div>  
+                    </div>
+
+                </c:if>
+                <div class="#{empty request.remoteUser ? 'col-md-8 offset-md-2': 'col-md-8'}">
+                    <ui:insert name="content">Content</ui:insert>
+                </div>
+            </div>
+            <hr/>
+            <div class="row ml-footer">
+                <div class="col-md" style="text-align: center">
+                    <ui:insert name="bottom">Marouane LAMINE | MBDS 2017-2018</ui:insert>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <h:outputScript name="plugins/jquery-1.10.2.js"/>
+        <h:outputScript name="plugins/tether.min.js"/>
+        <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+    </h:body>
+
+</html>

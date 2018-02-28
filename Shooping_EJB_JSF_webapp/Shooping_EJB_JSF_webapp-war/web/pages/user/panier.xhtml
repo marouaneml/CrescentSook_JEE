@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/mainTemplate.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">
+        Mon Panier
+    </ui:define>
+
+    <ui:define name="content">
+        <h2 class="display-4"><span class="oi oi-cart"></span>&nbsp;Mon panier</h2>
+        <hr/>
+        <c:if test="#{not empty panierMB.msg}">
+            <div class="alert alert-info">#{panierMB.msg}</div>
+        </c:if>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><span class="oi oi-trash"></span></th>
+                        <th>Article</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach begin="0" end= "9" step="1" varStatus="loopCounter" 
+                               items="${panierMB.articles.articles}" var="a">
+                        <tr>
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{panierMB.supprimer(a)}">
+                                        <span class="oi oi-trash"></span>
+                                    </h:commandLink>
+                                </h:form>
+                            </td>
+                            <td>#{a.designation}</td>
+                            <td>#{a.prix} €</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>  
+
+        </div>
+        <br/>
+        <h2 class="display-4">Valider votre achat</h2>
+        <h:form>
+            <div class="form-group row">
+                <label for="cb" class="col-sm-2 col-form-label">N° Carte bleu</label>
+                <div class="col-sm-10">
+                    <h:inputText required="true" requiredMessage="entrer le numero" value="#{panierMB.cb}" class="form-control" id="cb" />
+                </div>
+            </div>
+            <h:commandButton class="btn btn-primary" value="Valider"
+                             action="#{panierMB.validerAchat()}">
+            </h:commandButton>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

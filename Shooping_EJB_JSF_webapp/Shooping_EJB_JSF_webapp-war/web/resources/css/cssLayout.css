@@ -1,0 +1,89 @@
+.logo{
+    height: 65px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.logo img{
+    display: block;
+    height: 100%;
+
+}
+.logo span, .logo img {
+    display: inline-block;
+    line-height: 65px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.user-profile{
+    padding: 0 15px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+}
+.user-profile img{
+    height: 140px;
+    display: block;
+    margin: auto;
+}
+.user-profile span{
+    margin: 20px 0;
+    display: inline-block;
+    font-size: 30px;
+}
+
+.ml-content > .col-md-4 + .col-md-8 > .display-4{
+    font-size: 38px;
+}
+
+/* article item */
+.article-item{
+    margin-bottom: 10px;
+}
+.article-item .article-price{
+    font-size: 30px;
+}
+.article-item .btn{
+    width: 100%;
+}
+.article-item .card-text,.article-item  .card-title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* carousel*/
+.carousel-view{
+    height: 250px;
+    overflow: hidden;
+}
+
+.article-details img{
+    width: 150px;
+}
+.article-item .card-body{
+    padding: 10px;
+}
+.article-item .card-body > img{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Search bar */
+.search > .input-group > .input-group-append > a > button{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0.95rem 1rem;
+}
+
+/* alert */
+span.alert{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.topmenu li form{
+    margin: 0;
+    padding: .5rem 1rem;
+}

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/mainTemplate.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">
+        Mes Achats
+    </ui:define>
+
+    <ui:define name="content">
+        <h2 class="display-4"><span class="oi oi-command"></span>&nbsp;Mes Achats</h2>
+        <hr/>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><span class="oi oi-trash"></span></th>
+                        <th>Achat</th>
+                        <th>Carte de crédit</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach begin="0" end= "9" step="1" varStatus="loopCounter" 
+                               items="${panierMB.allachats}" var="a">
+                        <tr>
+                            <td>#{a.consommateur.prenom}</td>
+                            <td>#{a.montantTot} €</td>
+                            <td>#{a.numCB}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>  
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

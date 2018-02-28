@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/mainTemplate.xhtml">
+    <ui:define name="title">Crescent Souk</ui:define>
+    <ui:define name="content">
+
+        <div class="row">
+            <div class="col">
+                <div id="carouselExampleControls" class="carousel carousel-view slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        
+                        <c:forEach items="${articleMB.getLast(3)}" var="a" varStatus="loop">
+                        <div class="carousel-item #{loop.index == 0 ? 'active': ''}">
+                            <h:graphicImage name="uploads/articles/#{a.photo}.jpg" class="d-block w-100" alt="#{a.photo}"/>
+                        </div>
+                        </c:forEach>
+                        
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <c:forEach items="${articleMB.getLast(10)}" var="a">
+                <div class="col-sm-6">
+                    <div class="card article-item">
+                        <div class="card-body">
+                            <h:graphicImage name="uploads/articles/#{a.photo}.jpg" alt="#{a.designation}"/>
+                            <h5 class="card-title">#{a.designation}</h5>
+                            <p class="card-text">#{a.caracteristiques}</p>
+                            <div class="row justify-content-between">
+                                <div class="col-6">
+                                    <span class="article-price display-4">#{a.prix}</span>
+                                </div>
+                                <div class="col-4">
+                                    <h:form>
+                                        <h:commandButton  action="${articleMB.voirDetailArticle(a.id)}" class="btn btn-primary" value="Détails"></h:commandButton>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <br/>
+    </ui:define>
+</ui:composition>

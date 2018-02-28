@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/mainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">
+        Céer un nouveau compte
+    </ui:define>
+
+    <ui:define name="content">
+        <h2 class="display-4"><span class="oi oi-people"></span>&nbsp;Céer un compte</h2>
+        <hr/>
+        <h:form>
+            <div class="form-group row">
+                <label for="nom" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{consommateurMB.user.nom}" class="form-control" id="nom" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="prenom" class="col-sm-2 col-form-label">Prénom</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{consommateurMB.user.prenom}" class="form-control" id="prenom" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="age" class="col-sm-2 col-form-label">Age</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{consommateurMB.user.age}" class="form-control" id="age" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <h:inputText value="#{consommateurMB.user.email}" class="form-control" id="email" />
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="password">Mot de passe</span>
+                </div>
+                <h:inputSecret value="#{consommateurMB.user.password}" class="form-control" id="password" />
+                <h:inputSecret value="#{consommateurMB.user.password}" class="form-control" id="confirm" />
+            </div>
+            <br/>
+            <h:commandButton class="btn btn-primary" value="C'est parti"
+                             action="#{consommateurMB.save}">
+            </h:commandButton>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

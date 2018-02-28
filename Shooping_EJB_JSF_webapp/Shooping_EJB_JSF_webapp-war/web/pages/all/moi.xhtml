@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/mainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">
+        A propos
+    </ui:define>
+
+    <ui:define name="content">
+        <h2 class="display-4"><span class="oi oi-info"></span>&nbsp;A propos</h2>
+        <hr/>
+        <div class="jumbotron">
+            <h1 class="display-4">Crescent Sook</h1>
+            <p class="lead">
+                Crescent Sook est un projet J2EE, créé en utilisant les EJB et le Framework JSF, ainsi que des librairies Javascript et CSS.
+            </p>
+            <p class="lead">
+                On simule une plateforme de shopping dont le consommateur peut consulter, acheter des articles publiés sur le site web.
+            </p>
+            <p class="lead">
+                L’application est gérée par un administrateur qui se charge d’ajouter/gérer de nouvel produits, gérer les utilisateurs, etc
+            </p>
+            <hr class="my-4"/>
+            <p class="lead">Vous pouvez tester l'application avec des données de test:</p>
+            <h:form>
+                <h:commandLink class="btn btn-info" value="Créer des consommateurs de test" 
+                               action="#{consommateurMB.creerConsommateurTest()}"/>
+            </h:form>
+            <h:form>
+                <h:commandLink class="btn btn-info" value="Créer des articles de test" 
+                               action="#{articleMB.creerArticleTest()}"/>
+            </h:form>
+        </div>
+
+    </ui:define>
+
+</ui:composition>
