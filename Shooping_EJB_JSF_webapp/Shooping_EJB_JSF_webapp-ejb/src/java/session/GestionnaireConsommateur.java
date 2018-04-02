@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -59,10 +58,27 @@ public class GestionnaireConsommateur {
         return user;
     }
 
+    public User findUserByUID(String uid) {
+        TypedQuery<User> query = em.createNamedQuery("Consommateur.findUserByUID", User.class);
+        query.setParameter("codeEtu", uid);
+        User user = null;
+        try {
+            user = query.getSingleResult();
+            System.out.println("User: " + user.getNom() + "\n" + 
+                    "Code: " + user.getCodeEtu());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     public boolean majCompte(String email, User compte) {
+
         User u = (User) em.find(User.class, email);
         if (u != null) {
             u.setNom(compte.getNom());
+            u.setCodeEtu(compte.getCodeEtu());
+            u.setPoints(compte.getPoints());
             u.setPrenom(compte.getPrenom());
             u.setPhotoProfil(compte.getPhotoProfil());
             return true;

@@ -32,8 +32,15 @@
                     </div>
                     <div class="col-auto">
                         <h:form>
+                            <h:inputHidden value="#{NFCMB.readNfc}" id="readNfc" />
                             <h:commandButton  action="${panierMB.AjouterArticle(articleTemp)}" rendered="#{not empty request.remoteUser}" class="btn btn-primary" value="Ajouter au panier" />
+                            <div data-toggle="modal" data-target="#uid"  id="readNfcBtn">
+                                    <h:commandButton class="btn btn-primary" value="Cumuler des points" rendered="#{empty request.remoteUser}">
+                                        <f:ajax execute="readNfc" render="myuid" />
+                                    </h:commandButton>
+                            </div>
                         </h:form>
+                        <h:inputHidden id="myuid" value="${NFCMB.cumulerPoints(articleTemp)}" />
                     </div>
                 </div>
             </div>
@@ -66,6 +73,57 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="uid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="display-4" style="font-size: 25px">Passer votre carte étudiant (sans contact)</h5>
+                        <h:graphicImage name="img/nfc.png" style="padding: 0 150px;" class="align-self-start mr-4 img-fluid" alt="nfc card" />
+                        <h5 class="display-4 text-right" style="color: #dc3545" id="counter">30</h5>
+                        <h5 class="display-4 text-center" style="font-size: 16px;" id="counter">En attente de votre carte étudiant</h5>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="cumuleOk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="display-4 text-center" style="color: #34ce57; font-size: 35px" id="counter">Bravoo!<br/>Vous avez un cumule de #{articleTemp.pointsFidelite}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $("#readNfcBtn").click(function () {
+                var counter = 30;
+                var looper = setInterval(function () {
+                    counter--;
+                    $("#counter").text(counter);
+                    console.log($("#myuid").val());
+                    if (counter === 0 || $("#myuid").val() !== '')
+                    {
+                        $("input[id*='codeEtu']").val($("#myuid").val());
+                        $('#uid').modal('toggle');
+                        clearInterval(looper);
+                        $('#cumuleOk').modal('toggle');
+                    }
+                }, 1000);
+            });
+        </script>
     </ui:define>
 
 </ui:composition>

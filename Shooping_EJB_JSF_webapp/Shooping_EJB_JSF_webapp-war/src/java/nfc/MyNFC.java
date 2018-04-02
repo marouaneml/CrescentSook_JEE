@@ -1,6 +1,8 @@
 package nfc;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.smartcardio.Card;
 import javax.smartcardio.CardChannel;
 import javax.smartcardio.CardException;
@@ -51,5 +53,16 @@ public class MyNFC {
             sb.append(s);
         }
         return sb.toString().toUpperCase();
+    }
+
+    public static void main(String[] args) {
+        MyNFC nfc = new MyNFC();
+        try {
+            System.out.println("Attente de lecteur NFC:");
+            String uid = nfc.getCardUID(30000);
+            System.out.println("UID : " + uid);
+        } catch (CardException ex) {
+            Logger.getLogger(MyNFC.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

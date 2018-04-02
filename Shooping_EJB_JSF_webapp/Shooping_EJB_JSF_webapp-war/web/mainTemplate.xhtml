@@ -12,6 +12,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputScript name="plugins/jquery-1.10.2.js"/>
+        <h:outputScript name="plugins/tether.min.js"/>
+        <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
         <title><ui:insert name="title"></ui:insert></title>
     </h:head>
@@ -62,9 +65,9 @@
                                         <f:selectItem itemValue = "F" itemLabel ="Voitures"/>
                                     </h:selectOneMenu>
                                     <div class="input-group-append">
-                                        <h:commandLink action="#{chercherArticleMB.chercherArticle(str.value, chercherArticleMB.category)}">
-                                            <button class="btn btn-outline-secondary" type="button"><span class="oi oi-magnifying-glass"></span></button>
-                                        </h:commandLink>
+                                        <h:commandButton action="#{chercherArticleMB.chercherArticle(str.value, chercherArticleMB.category)}" class="btn btn-outline-secondary" value="Chercher">
+                                            
+                                        </h:commandButton>
                                     </div>
                                 </div>
                             </div>   
@@ -106,9 +109,7 @@
             </div>
             <br/>
         </div>
-        <h:outputScript name="plugins/jquery-1.10.2.js"/>
-        <h:outputScript name="plugins/tether.min.js"/>
-        <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+
     </h:body>
 
 </html>

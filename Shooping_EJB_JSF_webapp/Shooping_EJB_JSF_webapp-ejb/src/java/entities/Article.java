@@ -40,6 +40,8 @@ public class Article implements Serializable {
     private String caracteristiques;
 
     private String photo;
+    
+    private int pointsFidelite;
 
     public Article() {
         this.designation = "";
@@ -47,6 +49,7 @@ public class Article implements Serializable {
         this.reference = "";
         this.prix = 0;
         this.caracteristiques = "";
+        this.pointsFidelite = 0;
     }
 
     public Article(String designation, int qteStock, String reference, float prix, String caracteristiques, String photo) {
@@ -56,6 +59,15 @@ public class Article implements Serializable {
         this.prix = prix;
         this.caracteristiques = caracteristiques;
         this.photo = photo;
+        this.pointsFidelite = (int) (Math.random() * 20);
+    }
+
+    public int getPointsFidelite() {
+        return pointsFidelite;
+    }
+
+    public void setPointsFidelite(int pointsFidelite) {
+        this.pointsFidelite = pointsFidelite;
     }
 
     public void setPhoto(String photo) {

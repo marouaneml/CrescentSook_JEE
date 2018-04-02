@@ -39,6 +39,7 @@ public class PanierMB {
         }
         return "";
     }
+    
 
     public String supprimer(Article a) {
         if (gp.SupprimerArticle(a)) {
@@ -56,8 +57,7 @@ public class PanierMB {
                 tot += ach.getPrix();
                 a.getArticles().add(ach);
             }
-            
-            
+
             FacesContext context = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
             Principal principal = request.getUserPrincipal();
@@ -93,9 +93,11 @@ public class PanierMB {
         System.out.println("Carte bancaire n'est pas valide!");
         return false;
     }
-    public List<Achat> getAllachats(){
+
+    public List<Achat> getAllachats() {
         return gp.getAllAchats();
     }
+
     public Achat getArticles() {
         return gp.getAchat();
     }

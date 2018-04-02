@@ -20,7 +20,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Consommateur.findAll",
             query = "SELECT c FROM User c"),
     @NamedQuery(name = "Consommateur.findUserById",
-            query = "SELECT u FROM User u WHERE u.email = :email")
+            query = "SELECT u FROM User u WHERE u.email = :email"),
+    @NamedQuery(name = "Consommateur.findUserByUID",
+            query = "SELECT u FROM User u WHERE u.codeEtu = :codeEtu")
 })
 
 @Table(name = "users")
@@ -34,6 +36,8 @@ public class User implements Serializable {
     private String nom;
     private String prenom;
     private int age;
+    private String codeEtu;
+    private int points;
 
     @Column(name = "password", nullable = false, length = 64)
     private String password;
@@ -50,6 +54,8 @@ public class User implements Serializable {
         this.email = "";
         this.password = "";
         this.photoProfil = null;
+        this.codeEtu= "";
+        this.points= 10;
     }
 
     public User(String nom, String prenom, int age, String email, String password, String photo) {
@@ -60,6 +66,16 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.photoProfil = photo;
+        this.codeEtu= "";
+        this.points= 10;
+    }
+
+    public String getCodeEtu() {
+        return codeEtu;
+    }
+
+    public void setCodeEtu(String codeEtu) {
+        this.codeEtu = codeEtu;
     }
 
     public String getNom() {
@@ -76,6 +92,14 @@ public class User implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public int getAge() {

@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import javax.faces.context.FacesContext;
 import java.security.Principal;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -81,11 +80,9 @@ public class CompteMB implements Serializable {
                 msg = "Vous données ont été mise à jour avec succès";
                 return "/pages/user/compte";
             }
-
         }
         msg = "Erreur lors de la mise à jour!";
         return "/pages/user/compte?faces-redirect=true";
-
     }
 
     public User getCompte() {
